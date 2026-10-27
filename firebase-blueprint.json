@@ -1,0 +1,116 @@
+{
+  "entities": {
+    "TenantVault": {
+      "title": "TenantVault",
+      "description": "Server-side secure metadata and token vault for cafe tenants. Accessible strictly via serverless backend with Firebase Admin SDK; direct client access is denied.",
+      "type": "object",
+      "properties": {
+        "businessId": {
+          "type": "string",
+          "description": "Unique business tenant identifier (e.g. biz_xxxxxxxx)"
+        },
+        "ownerUid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the cafe owner"
+        },
+        "encryptedRefreshToken": {
+          "type": "string",
+          "description": "AES-256-GCM encrypted Google Drive OAuth refresh token"
+        },
+        "driveFolderId": {
+          "type": "string",
+          "description": "Google Drive folder ID of NextGenGaming_Cafe_Data"
+        },
+        "driveFileId": {
+          "type": "string",
+          "description": "Google Drive file ID of cafe_database.json"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp of the last vault record update"
+        },
+        "businessName": {
+          "type": "string",
+          "description": "Business or cafe name"
+        },
+        "ownerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the business owner"
+        }
+      },
+      "required": ["businessId", "ownerUid", "updatedAt"]
+    },
+    "WorkerBinding": {
+      "title": "WorkerBinding",
+      "description": "Server-authoritative mapping of worker accounts to their owner businessId.",
+      "type": "object",
+      "properties": {
+        "workerUid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the worker"
+        },
+        "workerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the worker"
+        },
+        "workerName": {
+          "type": "string",
+          "description": "Display name of the worker"
+        },
+        "businessId": {
+          "type": "string",
+          "description": "Business tenant ID the worker belongs to"
+        },
+        "ownerUid": {
+          "type": "string",
+          "description": "UID of the business owner"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["worker"],
+          "description": "Assigned role"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp when the worker was bound"
+        }
+      },
+      "required": ["workerUid", "workerEmail", "businessId", "role"]
+    },
+    "SystemConfig": {
+      "title": "SystemConfig",
+      "description": "Public system status indicating if the single Owner account has been configured.",
+      "type": "object",
+      "properties": {
+        "ownerConfigured": {
+          "type": "boolean",
+          "description": "Whether the owner has set up the cafe"
+        },
+        "businessName": {
+          "type": "string",
+          "description": "Cafe business name"
+        },
+        "ownerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email of the cafe owner"
+        },
+        "ownerUid": {
+          "type": "string",
+          "description": "UID of the cafe owner"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of configuration"
+        }
+      },
+      "required": ["ownerConfigured", "updatedAt"]
+    }
+  },
+  "firestore": {}
+}

@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Cloud Firestore is completely disabled.
+    // NEXT GEN GAMING CAFE stores all business data exclusively in the Owner's Google Drive.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "NEXT GEN ESPORT",
+  "description": "Professional high-performance management system for gaming cafes, esports arenas, and console zones. Features real-time session tracking, automated billing, and secure cloud-native architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

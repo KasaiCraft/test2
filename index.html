@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXT GEN ESPORT | Professional Gaming Cafe Management</title>
+    <meta name="description" content="NEXT GEN ESPORT is a professional high-performance management system for gaming cafes, esports arenas, and console zones. Features real-time session tracking, automated billing, and secure cloud storage." />
+    <meta property="og:title" content="NEXT GEN ESPORT | Gaming Cafe Management" />
+    <meta property="og:description" content="Professional management system for gaming cafes and esports arenas. Track sessions, manage gear, and secure your business data with Google Drive integration." />
+    
+    <meta name="google-site-verification" content="vh_8mqVblqz2tGulaxe5TebOKZac9AQ_N_rLtLmsPXM" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Cache Control: Prevent browser from caching index.html to ensure users get latest build hashes -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <link rel="icon" type="image/svg+xml" href="/app-logo.svg" />
+
+    <!-- Service Worker Cleanup: Forcefully unregister any legacy or stuck service workers -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister().then(function(boolean) {
+              if (boolean) {
+                console.log('Stale ServiceWorker unregistered successfully.');
+                window.location.reload();
+              }
+            });
+          }
+        });
+      }
+    </script>
+
+    <!-- Google Drive OAuth Popup Callback Catcher -->
+    <script>
+      (function() {
+        try {
+          if (window.opener && window.location.search && (window.location.search.includes('code=') || window.location.search.includes('error='))) {
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get('code');
+            var error = params.get('error');
+            var state = params.get('state');
+            if (code || error) {
+              window.opener.postMessage({ code: code, error: error, state: state }, window.location.origin);
+              window.close();
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
